@@ -19,9 +19,11 @@ fi
 
 #output
 
-tail -2 $output_file
+
+echo " $( head -1 $output_file) --> $(wc -l $1 | awk '{print $1}')" 
+echo
+tail -1 $output_file
 echo -e " ..."
-echo " number of lines: $(wc -l $1 | awk '{print $1}')" > $output_file
+echo "$(wc -l $1 | awk '{print $1}')" > $output_file
 echo "$(grep maximum $1 | tail -1)" >> $output_file
 tail -1 $output_file
-sed -n "1p" $output_file
