@@ -2,6 +2,13 @@
 
 output_file="$(echo $1 | cut -d '.' -f1)_max_count.txt"
 
+#check whether file exist or not
+if ! [ -e $1 ];
+then
+echo "$1 file does not exist"
+exit
+fi
+
 if ! [ -e $output_file ];
 then
 touch $output_file;
