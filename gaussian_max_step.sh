@@ -20,7 +20,6 @@ fi
 #tail -1 "$1" | awk '{print $1}' - | if [ "$(cat -)" = 'Normal' ]; then echo "${bold}${green}The process has Normally terminated${nc_red}"; exit 0; fi
 result=$(tail -1 "$1" | awk '{print $1}' -)
 if [ "$result" = 'Normal' ]; then
-  echo
   echo "${bold}${green}Normally terminated${nc_red}"
   exit 0
 fi
