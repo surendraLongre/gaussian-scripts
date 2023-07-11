@@ -4,7 +4,7 @@
 red=$(tput setaf 1)
 green=$(tput setaf 2)
 bright_yellow=$(tput setaf 11)
-bright_green=$(tput setaf 10)
+bright_cyan=$(tput setaf 14)
 bold=$(tput bold)
 nc_red=$(tput sgr0)
 nc='\033[0m' # reset color
@@ -29,7 +29,9 @@ blue=$(tput setaf 4)
 	result=$(tail -1 "$file" | awk '{print $1}' -)
 	output_file="$(echo $file | cut -d '.' -f1)_max_count.txt"
 	if [ "$result" = 'Normal' ]; then
-	echo "${bright_green}Normally terminated${nc_red}"
+	echo "${bold}${bright_cyan} $file${nc_red}"
+	echo "${bold}${bright_cyan} Normally terminated${nc_red}"
+	echo
 	continue
 	fi
 
@@ -42,7 +44,7 @@ blue=$(tput setaf 4)
 
 #output
 
-	echo "${bright_yellow} $file${nc_red}"
+	echo "${bold}${bright_yellow} $file${nc_red}"
 	echo " $( head -1 $output_file) --> $(wc -l $file | awk '{print $1}')" 
 	tail -1 $output_file
 	echo -e " ..."
