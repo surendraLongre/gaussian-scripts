@@ -3,6 +3,7 @@
 #colors
 red=$(tput setaf 1)
 green=$(tput setaf 2)
+bright_cyan=$(tput setaf 14)
 bold=$(tput bold)
 nc_red=$(tput sgr0)
 nc='\033[0m' # reset color
@@ -17,10 +18,10 @@ exit
 fi
 
 #check if the process has already normally terminated
-#tail -1 "$1" | awk '{print $1}' - | if [ "$(cat -)" = 'Normal' ]; then echo "${bold}${green}The process has Normally terminated${nc_red}"; exit 0; fi
+#tail -1 "$1" | awk '{print $1}' - | if [ "$(cat -)" = 'Normal' ]; then echo "${bright_cyan}The process has Normally terminated${nc_red}"; exit 0; fi
 result=$(tail -1 "$1" | awk '{print $1}' -)
 if [ "$result" = 'Normal' ]; then
-  echo "${bold}${green}Normally terminated${nc_red}"
+  echo "${bright_cyan}Normally terminated${nc_red}"
   exit 0
 fi
 
