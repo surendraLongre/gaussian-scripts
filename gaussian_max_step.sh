@@ -1,13 +1,13 @@
 #!/bin/bash
 
 #colors
-red=$(tput setaf 1)
-green=$(tput setaf 2)
-bright_yellow=$(tput setaf 11)
-bright_cyan=$(tput setaf 14)
-bold=$(tput bold)
+	red=$(tput setaf 1)
+	green=$(tput setaf 2)
+	bright_yellow=$(tput setaf 11)
+	bright_cyan=$(tput setaf 14)
+	bold=$(tput bold)
 nc_red=$(tput sgr0)
-nc='\033[0m' # reset color
+	nc='\033[0m' # reset color
 blue=$(tput setaf 4)
 
 
@@ -52,12 +52,23 @@ blue=$(tput setaf 4)
 			echo
 
 			done
-			exit
 	}
 
 #write a for loop for more than one file
 
 if [ $# -gt 0 ];
 then
-	execute "$@"
+if [ "$1" = 'cjobs' ];
+then
+#gjobs | awk '{print $2}' - | while read -r line; do gmcount $line; done
+while read -r line;
+do
+	pid=$(echo $line | awk '{print $1}')
+	file_name="$(echo $line | awk '{print $2}'| cut -d '.' -f1).log"
+	file_path="$(pwdx $pid | awk '{print $2}')/$file_name"
+	execute "$file_path"
+done< <(ps -ef | grep g16 | grep .com | awk '{print $2 "\t" $NF}' - )
+exit
+fi
+execute "$@"
 fi
