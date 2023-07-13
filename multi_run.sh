@@ -11,7 +11,7 @@ blue=$(tput setaf 4)
 #add condition to check whether a g16 or g09 command is availabel or not
 if command -v g16 >/dev/null 2>&1; then
 	g16_avail=0
-elif command -v g16 >/dev/null 2>&1; then
+elif command -v g09 >/dev/null 2>&1; then
 	g16_avail=1
 else
 	echo "command g16 or g09 is not found"

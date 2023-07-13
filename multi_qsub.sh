@@ -39,7 +39,7 @@ rm -r \"\$GAUSS_SCRDIR\"
 fi
 "
 echo "$script_sample" > "$script_name"
-qsub "$script_name"
+#qsub "$script_name"
 echo "SUCCESSFULL! Your process is running in the background"
 done
 
